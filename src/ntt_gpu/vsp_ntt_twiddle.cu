@@ -20,13 +20,13 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include <include/ntt_gpu/ntt_twiddle.cuh>
-#include <include/details/error_gpu.cuh>
-#include <include/details/assert.h>
-#include <include/details/allocator_gpu.cuh>
+#include <include/ntt_gpu/vsp_ntt_twiddle.cuh>
+#include <include/details/vsp_error_gpu.cuh>
+#include <include/details/vsp_assert.h>
+#include <include/details/vsp_allocator_gpu.cuh>
 #include <params.hpp>
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 constexpr int numgentwdthreadbit = 3;
 constexpr int numgentwdthread = 1<<numgentwdthreadbit;

@@ -20,10 +20,10 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include <include/details/allocator_gpu.cuh>
-#include <include/details/error_gpu.cuh>
+#include <include/details/vsp_allocator_gpu.cuh>
+#include <include/details/vsp_error_gpu.cuh>
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 std::pair<void*, MemoryDeleter> AllocatorCPU::New(size_t nbytes) {
   void* ptr = nullptr;

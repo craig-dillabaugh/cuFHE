@@ -1,5 +1,5 @@
-#include <include/keyswitch_gpu.cuh>
-namespace cufhe{
+#include <include/vsp_keyswitch_gpu.cuh>
+namespace vsp_cufhe{
 
 std::vector<TFHEpp::lvl0param::T*> ksk_devs;
 

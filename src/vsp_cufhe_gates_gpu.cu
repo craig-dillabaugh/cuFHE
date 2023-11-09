@@ -24,12 +24,12 @@
 
 #include <array>
 #include <cloudkey.hpp>
-#include <include/bootstrap_gpu.cuh>
-#include <include/keyswitch_gpu.cuh>
-#include <include/cufhe_gpu.cuh>
+#include <include/vsp_bootstrap_gpu.cuh>
+#include <include/vsp_keyswitch_gpu.cuh>
+#include <include/vsp_cufhe_gpu.cuh>
 #include <params.hpp>
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 int _gpuNum = 1;
 

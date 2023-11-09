@@ -1,4 +1,4 @@
-#include <include/cufhe_gpu.cuh>
+#include <include/vsp_cufhe_gpu.cuh>
 #include <iostream>
 #include <random>
 #include <vector>

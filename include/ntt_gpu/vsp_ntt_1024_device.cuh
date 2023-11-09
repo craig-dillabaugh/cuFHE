@@ -22,12 +22,12 @@
 
 #pragma once
 
-#include "ntt_ffp.cuh"
-#include "ntt_single_thread.cuh"
-#include "ntt_shifting.cuh"
-#include <include/details/utils_gpu.cuh>
+#include "vsp_ntt_ffp.cuh"
+#include "vsp_ntt_single_thread.cuh"
+#include "vsp_ntt_shifting.cuh"
+#include <include/details/vsp_utils_gpu.cuh>
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 __constant__ FFP con_1024_twd[1024];
 __constant__ FFP con_1024_twd_inv[1024];

@@ -21,7 +21,7 @@
  */
 
 // Include these two files for GPU computing.
-#include <test/test_util.h>
+#include "test_util.h"
 
 #include <include/vsp_cufhe_gpu.cuh>
 
