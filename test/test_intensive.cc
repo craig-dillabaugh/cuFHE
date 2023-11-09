@@ -1,11 +1,11 @@
-#include <include/cufhe_gpu.cuh>
+#include <include/vsp_cufhe_gpu.cuh>
 
 const size_t N = 20, M = 1000;
 
 template <class Launcher, class Verifier>
 void runAndVerify(const char* name, Launcher&& launcher, Verifier&& verifier)
 {
-    cufhe::Stream st[M];
+    vsp_cufhe::Stream st[M];
     for (size_t i = 0; i < M; i++) st[i].Create();
 
     int workingIndex[M] = {};
@@ -16,7 +16,7 @@ void runAndVerify(const char* name, Launcher&& launcher, Verifier&& verifier)
             if (workingIndex[i] == N) continue;
             cont = true;
 
-            if (cufhe::StreamQuery(st[i])) {
+            if (vsp_cufhe::StreamQuery(st[i])) {
                 int j = ++workingIndex[i];
                 if (j == N) continue;
                 launcher(j, i, st[i]);
@@ -39,7 +39,7 @@ void runAndVerify(const char* name, Launcher&& launcher, Verifier&& verifier)
 
 void testMux(TFHEpp::SecretKey& sk)
 {
-    cufhe::Ctxt<TFHEpp::lvl0param> ca, cb, cc, cres[N][M];
+    vsp_cufhe::Ctxt<TFHEpp::lvl0param> ca, cb, cc, cres[N][M];
     bool pa, pb, pc;
     pa = true;
     pb = false;
@@ -57,8 +57,8 @@ void testMux(TFHEpp::SecretKey& sk)
 
     runAndVerify(
         "mux",
-        [&](size_t i, size_t j, cufhe::Stream st) {
-            cufhe::Mux(cres[i][j], ca, cb, cc, st);
+        [&](size_t i, size_t j, vsp_cufhe::Stream st) {
+            vsp_cufhe::Mux(cres[i][j], ca, cb, cc, st);
         },
         [&](size_t i, size_t j) {
             bool decres;
@@ -70,7 +70,7 @@ void testMux(TFHEpp::SecretKey& sk)
 
 void testNand(TFHEpp::SecretKey& sk)
 {
-    cufhe::Ctxt<TFHEpp::lvl0param> ca, cb, cres[N][M];
+    vsp_cufhe::Ctxt<TFHEpp::lvl0param> ca, cb, cres[N][M];
     bool pa, pb;
     pa = true;
     pb = false;
@@ -84,8 +84,8 @@ void testNand(TFHEpp::SecretKey& sk)
 
     runAndVerify(
         "nand",
-        [&](size_t i, size_t j, cufhe::Stream st) {
-            cufhe::Nand(cres[i][j], ca, cb, st);
+        [&](size_t i, size_t j, vsp_cufhe::Stream st) {
+            vsp_cufhe::Nand(cres[i][j], ca, cb, st);
         },
         [&](size_t i, size_t j) {
             bool decres;
@@ -101,10 +101,10 @@ int main()
     TFHEpp::EvalKey ek;
     ek.emplacebk<TFHEpp::lvl01param>(*sk);
     ek.emplaceiksk<TFHEpp::lvl10param>(*sk);
-    cufhe::Initialize(ek);
+    vsp_cufhe::Initialize(ek);
 
     testNand(*sk);
     testMux(*sk);
 
-    cufhe::CleanUp();
+    vsp_cufhe::CleanUp();
 }

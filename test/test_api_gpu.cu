@@ -21,8 +21,8 @@
  */
 
 // Include these two files for GPU computing.
-#include <include/cufhe_gpu.cuh>
-using namespace cufhe;
+#include <include/vsp_cufhe_gpu.cuh>
+using namespace vsp_cufhe;
 
 #include <iostream>
 using namespace std;

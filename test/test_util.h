@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-namespace cufhe{
+namespace vsp_cufhe{
 template <class P, class Func, class Check>
 void Test(string type, Func func, Check check, vector<uint8_t>& pt,
           vector<Ctxt<P>>& ct, Stream* st, int kNumTests, int kNumSMs,

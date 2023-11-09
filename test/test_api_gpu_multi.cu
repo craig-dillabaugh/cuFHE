@@ -23,8 +23,8 @@
 // Include these two files for GPU computing.
 #include <unistd.h>
 
-#include <include/cufhe_gpu.cuh>
-using namespace cufhe;
+#include <include/vsp_cufhe_gpu.cuh>
+using namespace vsp_cufhe;
 
 #include <chrono>
 #include <iostream>

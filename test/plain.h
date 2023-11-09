@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-namespace cufhe {
+namespace vsp_cufhe {
 void NotCheck(uint8_t& out, const uint8_t& in) { out = (~in) & 0x1; }
 
 void CopyCheck(uint8_t& out, const uint8_t& in) { out = in; }

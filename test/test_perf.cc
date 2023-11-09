@@ -1,9 +1,9 @@
 // Include these two files for GPU computing.
-#include <include/cufhe_gpu.cuh>
+#include <include/vsp_cufhe_gpu.cuh>
 
 #include "plain.h"
 #include "test_util.h"
-using namespace cufhe;
+using namespace vsp_cufhe;
 
 #include <iostream>
 #include <random>

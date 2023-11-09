@@ -5,10 +5,10 @@
 #include <gmp.h>
 #include <gmpxx.h>
 
-#include <include/ntt_gpu/ntt_ffp.cuh>
+#include <include/ntt_gpu/vsp_ntt_ffp.cuh>
 
 using namespace std;
-using namespace cufhe;
+using namespace vsp_cufhe;
 // namespace mp = boost::multiprecision;
 __global__ void __Lsh__(uint64_t* d_res, uint64_t* d_a, uint32_t* d_l)
 {
