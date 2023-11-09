@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include <include/cufhe_gpu.cuh>
-#include <include/details/error_gpu.cuh>
-#include <include/details/utils_gpu.cuh>
+#include <include/vsp_cufhe_gpu.cuh>
+#include <include/details/vsp_error_gpu.cuh>
+#include <include/details/vsp_utils_gpu.cuh>
 
-namespace cufhe{
+namespace vsp_cufhe {
 
 extern std::vector<TFHEpp::lvl0param::T*> ksk_devs;
 

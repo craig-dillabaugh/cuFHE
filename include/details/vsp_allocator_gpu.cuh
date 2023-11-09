@@ -22,9 +22,9 @@
 
 #pragma once
 
-#include "allocator.h"
+#include "vsp_allocator.h"
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 class AllocatorCPU: public Allocator {
 public:
@@ -47,4 +47,4 @@ public:
   MemoryDeleter GetDeleter();
 };
 
-} // namespace cufhe
+} // namespace vsp_cufhe

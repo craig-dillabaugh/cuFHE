@@ -24,41 +24,51 @@
 
 #include <stdint.h>
 
-namespace cufhe {
+#ifndef __host__
+#define __host__
+#endif
+#ifndef __device__
+#define __device__
+#endif
 
-__device__ inline
-uint32_t ThisBlockRankInGrid() {
-  return blockIdx.x + gridDim.x * (blockIdx.y + gridDim.y * blockIdx.z);
+namespace vsp_cufhe {
+
+__host__ __device__ inline
+uint32_t Pow2(uint32_t e) { return (uint32_t)0x1 << e; }
+
+__host__ __device__ inline
+uint32_t Log2(uint32_t x) { return x < 2 ? 0 : 1 + Log2(x / 2); }
+
+__host__ __device__ inline
+constexpr uint32_t Pow2Const(uint32_t e) { return (uint32_t)0x1 << e; }
+
+__host__ __device__ inline
+constexpr uint32_t Log2Const(uint32_t x) {
+  return x < 2 ? 0 : 1 + Log2Const(x / 2);
 }
 
-__device__ inline
-uint32_t ThisGridSize() {
-  return gridDim.x * gridDim.y * gridDim.z;
+__host__ __device__ inline
+uint32_t NextPow2(uint32_t x) { return Pow2(Log2(x - 1) + 1); }
+
+__host__ __device__ inline
+constexpr uint32_t NextPow2Const(uint32_t x) {
+  return Pow2Const(Log2Const(x - 1) + 1);
 }
 
-__device__ inline
-uint32_t ThisThreadRankInBlock() {
-  return threadIdx.x + blockDim.x * (threadIdx.y + blockDim.y * threadIdx.z);
+__host__ __device__ inline
+uint32_t Align(uint32_t x, uint32_t width) {
+  return (x + width - 1) / width * width;
 }
 
-__device__ inline
-uint32_t ThisBlockSize() {
-  return blockDim.x * blockDim.y * blockDim.z;
+__host__ __device__ inline
+constexpr uint32_t AlignConst(uint32_t x, uint32_t width) {
+  return (x + width - 1) / width * width;
 }
 
-template <uint32_t dim_x, uint32_t dim_y, uint32_t dim_z>
-__device__ inline
-void Index3DFrom1D(uint3& t3d, uint32_t t1d) {
-  t3d.x = t1d % dim_x;
-  t1d /= dim_x;
-  t3d.y = t1d % dim_y;
-  t3d.z = t1d / dim_y;
-}
+__host__ __device__ inline
+uint32_t Align512(uint32_t x) { return (x + 511) >> 9 << 9; }
 
-template <uint32_t dim_x, uint32_t dim_y, uint32_t dim_z>
-__device__ inline
-uint3 Index1DFrom3D(uint32_t& t1d, uint3 t3d) {
-  t1d = t3d.x + dim_x * (t3d.y + dim_y * t3d.z);
-}
+__host__ __device__ inline
+constexpr uint32_t Align512Const(uint32_t x) { return (x + 511) >> 9 << 9; }
 
-} // namespace cufhe
+} // namespace vsp_cufhe

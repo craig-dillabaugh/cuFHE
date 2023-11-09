@@ -22,9 +22,9 @@
 
 #pragma once
 
-#include "ntt_ffp.cuh"
+#include "vsp_ntt_ffp.cuh"
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 ////////////////////////////////////////////////////////////////////////////////
 //// NTT conversions of sizes 2, 4, 8 on a single thread over registers     ////
@@ -132,4 +132,4 @@ void NTTInv8(FFP* r) {
   r[3].Swap(r[6]);
 }
 
-} // namespace cufhe
+} // namespace vsp_cufhe

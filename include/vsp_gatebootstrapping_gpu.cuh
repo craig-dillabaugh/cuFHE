@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include <include/cufhe_gpu.cuh>
-#include <include/details/error_gpu.cuh>
-#include <include/ntt_gpu/ntt.cuh>
+#include <include/vsp_cufhe_gpu.cuh>
+#include <include/details/vsp_error_gpu.cuh>
+#include <include/ntt_gpu/vsp_ntt.cuh>
 
-namespace cufhe{
+namespace vsp_cufhe{
 
 template <class P>
 __device__ inline typename P::T modSwitchFromTorus(const uint32_t phase)

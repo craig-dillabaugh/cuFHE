@@ -22,14 +22,14 @@
 
 #pragma once
 
-#include "ntt_ffp.cuh"
-#include "ntt_1024_device.cuh"
-#include "ntt_twiddle.cuh"
-#include <include/details/math.h>
-#include <include/details/error_gpu.cuh>
+#include "vsp_ntt_ffp.cuh"
+#include "vsp_ntt_1024_device.cuh"
+#include "vsp_ntt_twiddle.cuh"
+#include <include/details/vsp_math.h>
+#include <include/details/vsp_error_gpu.cuh>
 #include <params.hpp>
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 template <uint32_t length = TFHEpp::lvl1param::n>
 class CuNTTHandler: public CuTwiddle<length> {
@@ -89,4 +89,4 @@ private:
 
 template class CuNTTHandler<TFHEpp::lvl1param::n>;
 
-} // namespace cufhe
+} // namespace vsp_cufhe

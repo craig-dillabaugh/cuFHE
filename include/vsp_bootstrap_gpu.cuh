@@ -24,10 +24,10 @@
 
 #include <params.hpp>
 
-#include "details/allocator_gpu.cuh"
-#include "ntt_gpu/ntt_ffp.cuh"
+#include "details/vsp_allocator_gpu.cuh"
+#include "ntt_gpu/vsp_ntt_ffp.cuh"
 
-namespace cufhe {
+namespace vsp_cufhe {
 void InitializeNTThandlers(const int gpuNum);
 template<class P>
 void BootstrappingKeyToNTT(
@@ -140,4 +140,4 @@ template<class iksP, class brP, typename brP::targetP::T μ>
 void NMuxBootstrap(typename brP::targetP::T* const out, const typename iksP::domainP::T* const inc,
                   const typename iksP::domainP::T* const in1, const typename iksP::domainP::T* const in0,
                   const cudaStream_t st, const int gpuNum);
-}  // namespace cufhe
+}  // namespace vsp_cufhe

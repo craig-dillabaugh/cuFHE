@@ -21,7 +21,7 @@
  */
 
 /**
- * @file cufhe.h
+ * @file vsp_cufhe_gpu.h
  * @brief This is the user API of the cuFHE library.
  *        It hides most of the contents in the developer API and
  *        only provides essential data structures and functions.
@@ -32,13 +32,13 @@
 #include <cuda_device_runtime_api.h>
 #include <cuda_runtime.h>
 
-#include "ntt_gpu/ntt_ffp.cuh"
-#include "bootstrap_gpu.cuh"
+#include "ntt_gpu/vsp_ntt_ffp.cuh"
+#include "vsp_bootstrap_gpu.cuh"
 
 #include <array>
 #include <cloudkey.hpp>
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 extern int _gpuNum;
 

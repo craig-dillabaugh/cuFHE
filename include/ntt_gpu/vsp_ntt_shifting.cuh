@@ -22,9 +22,9 @@
 
 #pragma once
 
-#include "ntt_ffp.cuh"
+#include "vsp_ntt_ffp.cuh"
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 ////////////////////////////////////////////////////////////////////////////////
 //// Left-shifting in NTT conversions of size 16, 32, 64 on each thread     ////
@@ -418,4 +418,4 @@ void NTTInv8x8Lsh(FFP* s, uint32_t col) {
     NTTInv8x8Lsh<7>(s);
 }
 
-} // namespace cufhe
+} // namespace vsp_cufhe

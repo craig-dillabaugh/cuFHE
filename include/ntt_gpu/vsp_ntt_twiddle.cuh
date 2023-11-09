@@ -22,18 +22,34 @@
 
 #pragma once
 
-#include <stdlib.h>
-#include <utility>
+#include "vsp_ntt_ffp.cuh"
 
-namespace cufhe {
+namespace vsp_cufhe {
 
-using MemoryDeleter = void (*)(void*);
+/** All twiddle factors are stored here. */
+template <uint32_t length = 1024>
+class CuTwiddle {
 
-class Allocator {
 public:
-  Allocator() {};
-  virtual ~Allocator() {};
-  virtual MemoryDeleter GetDeleter() = 0;
-};
+  __host__ __device__ inline
+  CuTwiddle() {
+    twd_ = nullptr;
+    twd_inv_ = nullptr;
+    twd_sqrt_ = nullptr;
+    twd_sqrt_inv_ = nullptr;
+  }
 
-} // namespace cufhe
+  __host__ __device__ inline
+  ~CuTwiddle() {}
+
+  void Create();
+
+  void Destroy();
+
+  FFP* twd_;
+  FFP* twd_inv_;
+  FFP* twd_sqrt_;
+  FFP* twd_sqrt_inv_;
+}; // class CuTwiddle
+
+} // namespace vsp_cufhe

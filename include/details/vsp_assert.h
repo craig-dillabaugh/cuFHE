@@ -22,47 +22,28 @@
 
 #pragma once
 
+#ifndef __host__
+#define __host__
+#endif
+#ifndef __device__
+#define __device__
+#endif
+
+#include <assert.h>
 #include <stdio.h>
-#include <stdlib.h>
 
-namespace cufhe {
+namespace vsp_cufhe {
 
-inline
-void CuSafeCall__(cudaError err, const char *file, const int line) {
-	if (cudaSuccess != err) {
-		fprintf( stderr, "CuSafeCall() failed at %s:%i : %s\n", file, line,
-				cudaGetErrorString(err));
-		exit(-1);
-	}
-	return;
+__host__ __device__ inline
+void CuAssert__(bool expr,
+                const char* file,
+                const int line) {
+	if (0 == expr)
+		printf("CuAssert() failed at %s:%i\n", file, line);
+  assert(expr);
 }
 
-inline
-void CuCheckError__(const char *file, const int line) {
-	cudaError err = cudaGetLastError();
-	if (cudaSuccess != err) {
-		fprintf(stderr, "CuCheckError() failed at %s:%i : %s\n", file, line,
-				cudaGetErrorString(err));
-		exit(-1);
-	}
-	// More careful checking. However, this will affect performance.
-	// Comment out if needed.
-	//#define safer
-	#ifdef SAFER
-	err = cudaDeviceSynchronize();
-	if (cudaSuccess != err) {
-		fprintf(stderr, "CuCheckError() with sync failed at %s:%i : %s\n", file,
-				line, cudaGetErrorString(err));
-		exit(-1);
-	}
-	#endif
-	return;
-}
+// @brief Detect failures. Works for both device and host.
+#define Assert(expr)	CuAssert__(expr, __FILE__, __LINE__)
 
-// @brief Report error location and terminate, if "cudaError != SUCCESS".
-#define CuSafeCall(err)	CuSafeCall__(err, __FILE__, __LINE__)
-
-// @brief Report error location and terminate, if last "cudaError != SUCCESS".
-#define CuCheckError()	CuCheckError__(__FILE__, __LINE__)
-
-} // namespace cufhe
+} // namespace vsp_cufhe

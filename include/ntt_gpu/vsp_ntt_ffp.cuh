@@ -24,7 +24,7 @@
 
 #include <stdint.h>
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 /**
  * @class FFP
@@ -602,4 +602,4 @@ public:
 
 }; // class FFP
 
-} // namespace cufhe
+} // namespace vsp_cufhe
