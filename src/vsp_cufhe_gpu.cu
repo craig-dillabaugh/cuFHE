@@ -24,10 +24,10 @@
 #include <cuda_device_runtime_api.h>
 #include <cuda_runtime.h>
 
-#include <include/cufhe_gpu.cuh>
-#include <include/details/allocator_gpu.cuh>
+#include <include/vsp_cufhe_gpu.cuh>
+#include <include/details/vsp_allocator_gpu.cuh>
 
-namespace cufhe {
+namespace vsp_cufhe {
 
 uint32_t cnt = 0;
 

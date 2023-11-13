@@ -21,17 +21,17 @@
  */
 
 
-#include <include/bootstrap_gpu.cuh>
-#include <include/gatebootstrapping_gpu.cuh>
-#include <include/keyswitch_gpu.cuh>
-#include <include/cufhe_gpu.cuh>
-#include <include/details/error_gpu.cuh>
-#include <include/ntt_gpu/ntt.cuh>
+#include <include/vsp_bootstrap_gpu.cuh>
+#include <include/vsp_gatebootstrapping_gpu.cuh>
+#include <include/vsp_keyswitch_gpu.cuh>
+#include <include/vsp_cufhe_gpu.cuh>
+#include <include/details/vsp_error_gpu.cuh>
+#include <include/ntt_gpu/vsp_ntt.cuh>
 #include <limits>
 #include <vector>
 #include <algorithm>
 
-namespace cufhe {
+namespace vsp_cufhe {
 template<class P = TFHEpp::lvl1param>
 constexpr uint MEM4HOMGATE =
     ((P::k+1) * P::l + 1 + P::k) * P::n * sizeof(FFP);
